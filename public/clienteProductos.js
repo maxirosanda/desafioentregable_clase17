@@ -27,8 +27,8 @@ socket.on('lista', data => {
       <td>${el.precio}</td>
       <td>${el.stock}</td>
       <td><img src=${el.url} class="img-fluid" alt="Responsive image"></td>
-      <td><a href="/carrito/agregar/${el.id}" class="btn btn-primary">Agregar a carrito</a></td>
-      <td><a href="/productos/listar/${el.id}" class="btn btn-primary">Editar</a></td>
+      <td><a href="/carrito/agregar/${el.Id}" class="btn btn-primary">Agregar a carrito</a></td>
+      <td><a href="/productos/listar/${el.Id}" class="btn btn-primary">Editar</a></td>
       </form>
     </tr>`    
    })

@@ -19,15 +19,15 @@ socket.on('lista_carrito', data => {
   data.forEach((el,index) =>{
     texto += `<tr>
 
-    <th scope="row">${el.id} </th>
-    <td>${el.nombre} </td>
+    <th scope="row">${el.Id} </th>
+    <td>${el.Nombre} </td>
     <td>${el.timestamp}<input  type="hidden" class="form-control" id="id"  value=${el.timestamp} name="timestamp" aria-describedby="timestamp"></td>
-    <td>${el.des}</td>
-    <td>${el.cod}</td>
+    <td>${el.descripcion}</td>
+    <td>${el.codigo}</td>
     <td>${el.precio}</td>
     <td>${el.stock}</td>
     <td><img src=${el.url} class="img-fluid" alt="Responsive image"></td>
-    <td><a href="/carrito/${el.id}" class="btn btn-primary">Eliminar</a></td>
+    <td><a href="/carrito/${el.Id}" class="btn btn-primary">Eliminar</a></td>
     </form>
   </tr>`    
  })
