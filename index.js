@@ -1,8 +1,5 @@
 var fs = require('fs');
 var express = require('express');
-var moduloLeer = require('./modulos/modulosCrud/moduloLeer');
-var moduloLeerChat = require('./modulos/moduloLeerChat');
-var moduloGuardarChat = require('./modulos/moduloGuardarChat');
 var app = express();
 var router = express.Router();
 var handlebars = require('express-handlebars');
@@ -14,6 +11,8 @@ var io = require('socket.io')(http);
 //------------------------
 const {options} = require('./options/mariaDB')
 const knex= require('knex')(options)
+const {options2} = require('./options/SQLite')
+const knex2= require('knex')(options2)
 //-------------------------------
 var admin = true
 // configuracion handlebars
@@ -186,30 +185,36 @@ server.on("error", function (error) { return console.log("error en servidor " + 
 //--------------------socket--------------------------------------------------
 http.listen(3000, function () { return console.log('SERVER ON'); });
 
-//-------------------------------------------------------------------------
-router.get('/chat', function (req, res) {
-    res.status(200).render('./partials/chat');
-});
-router.get('/lista2', function (req, res) {
-    res.status(200).render('./partials/lista');
-});
 //-------------------------------------
 io.on('connection', function (socket) {
     console.log('¡Nuevo cliente conectado!');
-    moduloLeerChat.leer(fs).then(function (guardados) {
-        socket.emit('vermensajes', JSON.parse(guardados));
-    });
+//---------------socket mensajes---------------------- 
+    knex2.from('mensajes').select('*')
+        .then((rows)=>{
+            socket.emit('vermensajes',rows)    
+         })
+            .catch((err)=>{console.log(err); throw err})
+    
     socket.on('paquete', function (data) {
-        moduloGuardarChat.guardar(data.mail, data.mensaje, data.fecha, fs);
-    });
 
+        knex2('mensajes').insert({email:data.mail,mensaje:data.mensaje,fecha:data.fecha})
+        .then (()=>console.log('data inserted'))
+        .catch((err)=>{console.log(err); throw err})
+        .finally( async () => {
+               await knex2.from('mensajes').select('*')
+                .then((rows)=>{
+                    socket.emit('vermensajes',rows)    
+                 })
+                    .catch((err)=>{console.log(err); throw err})     
+            })
+});
+
+//------------socket productos y carrito --------------------------------
     knex.from('productos').select('*')
     .then((rows)=>{
         socket.emit('lista',rows);    
     })
-    .catch(()=>{
-        return res.status(400).json({ "error": "Producto no encontrado" })
-    })
+    .catch((err)=>{console.log(err); throw err})
     .finally(()=>{
       //knex.destroy()
     }) 
@@ -218,9 +223,7 @@ io.on('connection', function (socket) {
     .then((rows)=>{
         socket.emit('lista_carrito',rows);    
     })
-    .catch(()=>{
-        return res.status(400).json({ "error": "Producto no encontrado" })
-    })
+    .catch((err)=>{console.log(err); throw err})
     .finally(()=>{
       //knex.destroy()
     }) 
