@@ -1,0 +1,19 @@
+
+
+<div class="col-6 mx-5 my-5 ">
+<h2>Chat</h2>
+<div class="mb-3">
+  <label for="mail" class="form-label">Ingrese su mail</label>
+  <input type="email" class="form-control" type="text" id="mail" placeholder="name@example.com">
+</div>
+<div class="mb-3">
+  <label for="mensaje" class="form-label">Example textarea</label>
+  <textarea class="form-control" type="text" id="mensaje"  rows="3"></textarea>
+</div>
+<button type="button" class="btn btn-primary mb-5" onclick="enviarMensaje()">enviar</button>
+<ul class="list-group" id="contenedordatos">
+</ul>
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/cliente.js"></script>

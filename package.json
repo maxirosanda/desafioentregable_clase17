@@ -1,0 +1,38 @@
+{
+  "name": "desafiogenericio1",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js",
+    "ServerTStoJS5": ".\\node_modules\\.bin\\tsc",
+    "ServerES6toJS5": "node_modules/.bin/babel ./index.es6.js -o ./index.js -w"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.13.14",
+    "@babel/core": "^7.13.14",
+    "@babel/preset-env": "^7.13.12",
+    "nodemon": "^2.0.7"
+  },
+  "dependencies": {
+    "bootstrap": "^4.6.0",
+    "express": "^4.17.1",
+    "express-handlebars": "^5.2.1",
+    "knex": "^0.95.4",
+    "mysql": "^2.18.1",
+    "socket.io": "^4.0.0",
+    "typescript": "^4.2.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maxirosanda/clase12_desafioentregable.git"
+  },
+  "bugs": {
+    "url": "https://github.com/maxirosanda/clase12_desafioentregable/issues"
+  },
+  "homepage": "https://github.com/maxirosanda/clase12_desafioentregable#readme",
+  "description": ""
+}

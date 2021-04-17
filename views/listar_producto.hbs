@@ -1,0 +1,58 @@
+
+<div class="container">
+<div class="fixed-top row bg-secondary text-white"> 
+<h1 >Editar Producto</h1>
+<a href="/productos/listar" class="btn btn-primary col-3">Volver a ver el listado productos</a>
+</div>
+<div class="separador"></div>
+<form  action="/productos/{{arreglo.Id}}" enctype="multipart/form-data">
+       <div class="mb-3">
+         <label for="nombre" class="form-label">Id</label>
+      <input disabled type="text" class="form-control" id="id"  value={{arreglo.Id}} name="id" aria-describedby="id">
+    </div>
+        <div class="mb-3">
+         <label for="nombre" class="form-label">Ultima actualizacion</label>
+      <input disabled type="datetime" class="form-control" id="id"  value={{arreglo.timestamp}} name="timestamp" aria-describedby="timestamp">
+    </div>
+    <div class="mb-3">
+      <label for="nombre" class="form-label">Ingrese Nombre</label>
+      <input type="text" class="form-control" id="nombre"  value={{arreglo.Nombre}} name="nombre" aria-describedby="Nombre">
+      <div id="Nombre" class="form-text">Ingresar nombre del producto</div>
+    </div>
+    <div class="mb-3">
+      <label for="des" class="form-label">Ingrese Descripcion</label>
+      <input type="text" class="form-control" value={{arreglo.descripcion}}  id="des" name="des" aria-describedby="Des">
+      <div id="Des" class="form-text">Ingresar Descripcion del producto</div>
+    </div>
+      <div class="mb-3">
+      <label for="cod" class="form-label">Ingrese Codigo</label>
+      <input type="text" class="form-control" id="cod" value={{arreglo.codigo}}   name="cod" aria-describedby="Cod">
+      <div id="Cod" class="form-text">Ingresar Codigo del producto</div>
+    </div>
+     <div class="mb-3">
+      <label for="url" class="form-label">Ingrese URL</label>
+      <input type="text" class="form-control" name="url" value={{arreglo.url}}  id="url" aria-describedby="Url">
+      <div id="Url" class="form-text">Ingresar URL del producto</div>
+    </div>
+    <div class="mb-3">
+      <label for="precio" class="form-label">Ingrese Precio</label>
+      <input type="text" class="form-control" name="precio" id="precio" value={{arreglo.precio}}  aria-describedby="Precio">
+      <div id="Precio" class="form-text">Ingresar Precio del producto</div>
+    </div>
+     <div class="mb-3">
+      <label for="stock" class="form-label">Ingrese stock</label>
+      <input type="text" class="form-control" name="stock" id="stock" value={{arreglo.stock}}  aria-describedby="Stock">
+      <div id="Stock" class="form-text">Ingresar stock del producto</div>
+    </div>
+    <input type='hidden' name="_method"  value="PUT" >  
+    <button type="submit" class="btn btn-primary">Actualizar</button>
+  </form>
+
+  <form  action="/productos/{{arreglo.id}}" enctype="multipart/form-data">
+    <div class="mb-3">
+      <input type='hidden' type="text" class="form-control" id="id"  value={{arreglo.id}} name="id" aria-describedby="Nombre">
+    </div>
+    <input type='hidden' name="_method"  value="DELETE" >  
+    <button type="submit" class="btn btn-primary">Borrar</button>
+  </form>
+  </div>

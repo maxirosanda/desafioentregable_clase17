@@ -1,0 +1,30 @@
+
+<div class="container">
+<div class="fixed-top row bg-secondary text-white"> 
+<h1 >Agregar al carrito</h1>
+<a href="/productos/listar" class="btn btn-primary col-3">Volver a ver el listado productos</a>
+</div>
+<div class="separador"></div>
+<ul class="list-group">
+  <li class="list-group-item">{{arreglo.id}}</li>
+  <li class="list-group-item">{{arreglo.nombre}}</li>
+  <li class="list-group-item">{{arreglo.des}}</li>
+  <li class="list-group-item">{{arreglo.cod}}</li>
+  <li class="list-group-item">{{arreglo.precio}}</li>
+</ul>
+<img src={{arreglo.url}} class="img-fluid" alt="Responsive image">
+<form method="post"  action="/carrito/" >
+      <input  type="hidden" class="form-control" id="id"  value="{{arreglo.id}}" name="id" aria-describedby="id">
+      <input  type="hidden" class="form-control" id="nombre"  value="{{arreglo.nombre}}" name="nombre" aria-describedby="Nombre">
+      <input   type="hidden" class="form-control" value="{{arreglo.des}}"  id="des" name="des" aria-describedby="Des">
+      <input  type="hidden" class="form-control" id="cod" value="{{arreglo.cod}}"   name="cod" aria-describedby="Cod">
+      <input type="hidden" class="form-control" name="url" value="{{arreglo.url}}" id="url" aria-describedby="Url">
+      <input type="hidden"  class="form-control" name="precio" id="precio" value="{{arreglo.precio}}"  aria-describedby="Precio">
+     <div class="mb-3">
+      <label for="stock" class="form-label">Ingrese cantidad</label>
+      <input type="text" class="form-control" name="stock" id="stock" value="{{arreglo.stock}}" aria-describedby="Stock">
+      <div id="Stock" class="form-text">Ingresar cantidad del producto</div>
+    </div> 
+    <button type="submit" class="btn btn-primary">Agregar al carrito</button>
+  </form>
+  </div>

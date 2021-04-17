@@ -1,0 +1,17 @@
+
+<div class="container">
+<div class="fixed-top row bg-secondary text-white"> 
+<h1 >Carrito</h1>
+<a href="/productos/listar" class="btn btn-primary col-3">Volver a ver el listado productos</a>
+</div>
+<div class="separador"></div>
+{{#if arreglo.length}}
+<div id="lista_carrito"></div>
+{{else}}
+<h2>No hay productos</h2>
+{{/if}}
+</div>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/clienteCarrito.js"></script>
+
+

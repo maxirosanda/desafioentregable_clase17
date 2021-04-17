@@ -1,0 +1,44 @@
+
+<div class="container">
+<div class="fixed-top row bg-secondary text-white"> 
+<h1 >Agregar Producto</h1>
+<a href="/productos/listar" class="btn btn-primary col-3">Volver a ver el listado productos</a>
+</div>
+<div class="separador"></div>
+<div class="container mt-5">
+<form method="post" action="/productos/">
+    <div class="mb-3">
+      <label for="nombre" class="form-label">Ingrese Nombre</label>
+      <input type="text" class="form-control" id="nombre" name="nombre" aria-describedby="Nombre">
+      <div id="Nombre" class="form-text">Ingresar nombre del producto</div>
+    </div>
+     <div class="mb-3">
+      <label for="des" class="form-label">Ingrese Descripcion</label>
+      <input type="text" class="form-control" id="des" name="des" aria-describedby="Des">
+      <div id="Des" class="form-text">Ingresar Descripcion del producto</div>
+    </div>
+      <div class="mb-3">
+      <label for="cod" class="form-label">Ingrese Codigo</label>
+      <input type="text" class="form-control" id="cod" name="cod" aria-describedby="Cod">
+      <div id="Cod" class="form-text">Ingresar Codigo del producto</div>
+    </div>
+     <div class="mb-3">
+      <label for="url" class="form-label">Ingrese URL</label>
+      <input type="text" class="form-control" name="url" id="url" aria-describedby="Url">
+      <div id="Url" class="form-text">Ingresar URL del producto</div>
+    </div>
+    <div class="mb-3">
+      <label for="precio" class="form-label">Ingrese Precio</label>
+      <input type="number" class="form-control" name="precio" id="precio" aria-describedby="Precio">
+      <div id="Precio" class="form-text">Ingresar Precio del producto</div>
+    </div>
+     <div class="mb-3">
+      <label for="stock" class="form-label">Ingrese stock</label>
+      <input type="number" class="form-control" name="stock" id="stock" aria-describedby="Stock">
+      <div id="Stock" class="form-text">Ingresar stock del producto</div>
+    </div>
+   
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+
+  </div>
