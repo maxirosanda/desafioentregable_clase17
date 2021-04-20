@@ -63,7 +63,6 @@ router.get(`/carrito/listar`, function (req, res) {
             knex.from('productos').select('*').where('Id',id)
             .then((rows)=>{
                 for(row of rows){
-                console.log(JSON.parse(JSON.stringify(row)))
                 res.status(200).render('listar_producto', { arreglo:JSON.parse(JSON.stringify(row)), listExists: true })
             }
             })
@@ -178,14 +177,85 @@ app.use('/', router);
 app.use(express.static('public'));
 var port = 8080;
 var server = app.listen(port, function () {
-    console.log("Example app listening at http://localhost:" + port);
-});
+    console.log("Example app listening at http://localhost:" + port)
+    //--------------comprueba si existe la tabla productos-------------------
+    knex.from('productos')
+    .then (()=>console.log('tabla existe'))
+    .catch((err)=>{
+    if(errn=1146){
+        knex.schema.createTable('productos',table =>{
+            table.increments('Id').primary()
+            table.timestamp('timestamp').defaultTo(knex.fn.now())
+            table.string('Nombre')
+            table.string('descripcion')
+            table.string('codigo')
+            table.string('url')
+            table.decimal('precio', 8, 2)
+            table.integer('stock')
+})
+.then (()=>console.log('table created'))
+.catch((err)=>{console.log(err); throw err})
+    }else{
+        console.log(err) 
+        throw err
+    }  
+    })
+ 
+
+//---------------comprueba si existe la tabla carrito---------------------------------------------------------    
+knex.from('carrito')
+.then (()=>console.log('tabla existe'))
+.catch((err)=>{
+if(errn=1146){
+    knex.schema.createTable('carrito',table =>{
+        table.increments('Id_carrito').primary()
+        table.integer('Id')
+        table.timestamp('timestamp').defaultTo(knex.fn.now())
+        table.string('Nombre')
+        table.string('descripcion')
+        table.string('codigo')
+        table.string('url')
+        table.decimal('precio', 8, 2)
+        table.integer('stock')
+})
+.then (()=>console.log('table created'))
+.catch((err)=>{console.log(err); throw err})
+
+}else{
+    console.log(err) 
+    throw err
+}
+
+})
+
+//-----------Comprueba si existe la tabla mensajes------------------
+knex2.from('mensajes')
+.then (()=>console.log('tabla existe'))
+.catch((err)=>{
+if(errn=1146){
+    knex2.schema.createTable('mensajes',table =>{
+        table.integer('Id').primary()
+        table.timestamp('fecha').defaultTo(knex.fn.now())
+        table.string('email')
+        table.string('mensaje')
+})
+.then (()=>console.log('table created'))
+.catch((err)=>{console.log(err); throw err})
+
+}else{
+    console.log(err) 
+    throw err
+
+}
+
+})
+})
 server.on("error", function (error) { return console.log("error en servidor " + error); });
 
-//--------------------socket--------------------------------------------------
+//--------------------Conexion servidor socket--------------------------------------------------
 http.listen(3000, function () { return console.log('SERVER ON'); });
 
-//-------------------------------------
+//---------------Conexion socket ----------------------
 io.on('connection', function (socket) {
     console.log('¡Nuevo cliente conectado!');
 //---------------socket mensajes---------------------- 
@@ -209,7 +279,7 @@ io.on('connection', function (socket) {
             })
 });
 
-//------------socket productos y carrito --------------------------------
+//------------Socket productos y carrito --------------------------------
     knex.from('productos').select('*')
     .then((rows)=>{
         socket.emit('lista',rows);    
