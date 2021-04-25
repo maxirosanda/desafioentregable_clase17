@@ -288,7 +288,6 @@ io.on('connection', function (socket) {
     .finally(()=>{
       //knex.destroy()
     }) 
-
     knex.from('carrito').select('*')
     .then((rows)=>{
         socket.emit('lista_carrito',rows);    
